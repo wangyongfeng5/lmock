@@ -2,7 +2,6 @@
 ### 接口
 
 替换一个函数，修改机器指令，用新函数替换旧函数，支持全局函数（包括第三方和系统函数）、成员函数（包括静态和虚函数）
-//对于虚函数，需要额外传入一个对应类的实例，注意是随便一个实例，与被测代码没有关系
 ```
 template <typename Origin, typename Mock>
 int mock(Origin old_func, Mock new_func, void *obj = nullptr);
@@ -155,4 +154,3 @@ assert(write(5, "hello", 5) == -1);
 * 显然，这种方法对内联函数无效，不过对于单元测试来说，可以关闭内联，同时也建议关闭其它编译器优化。
 * 可以使用-fno-access-control编译你的测试代码，可以使g++关闭c++成员的访问控制（即protected及private不再生效）。
 
-# 项目地址
