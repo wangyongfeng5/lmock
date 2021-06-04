@@ -63,8 +63,9 @@ static int restore_func(void *func_addr, char *origin) {
 
 int mock(void *old_func, void *new_func, void *obj) {
     if (obj) {
+        uint64_t index = ((uint64_t)old_func - 1) / sizeof(void *);
         void **virtual_table = *(void ***)obj;
-        old_func = virtual_table[(uint64_t)old_func - 1];
+        old_func = virtual_table[index];
     }
     return mock_func(old_func, new_func);
 }
