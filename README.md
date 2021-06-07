@@ -150,7 +150,11 @@ assert(write(5, "hello", 5) == -1);
 对系统函数的mock，其实跟普通的全局函数并无两样，第三方库函数也是同理。
 
 # 使用限制&注意事项
-* 目前仅支持Linux + X86_64平台，如有需求，Windows和其它硬件平台，如X86_32、ARM，也可在短期内支持。
+* 目前支持X86_64平台上的Linux、MacOS系统，如有需求，Windows和其它硬件平台，如X86_32、ARM，也可在短期内支持。
+* MacOS下，需要在执行前对单测可执行文件做以下修改：
+```
+printf '\x07' | dd of=<ut_executable> bs=1 seek=160 count=1 conv=notrunc
+```
 * 显然，这种方法对内联函数无效，不过对于单元测试来说，关闭内联是没有影响的，同时也建议关闭其它编译器优化选项。
 * 可以使用-fno-access-control编译你的测试代码，它可以使g++关闭c++成员的访问控制（即protected及private关键字不再生效）。
 

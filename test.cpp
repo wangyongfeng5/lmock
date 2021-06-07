@@ -114,7 +114,7 @@ int main() {
     test_global();
     test_member();
     test_static_member();
-    //test_virtual_member();
+    test_virtual_member();
     test_system();
     cout << "Everything is ok." << endl;
     return 0;    
